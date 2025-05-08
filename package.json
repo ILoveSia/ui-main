@@ -1,0 +1,54 @@
+// ui-main > package.json
+
+{
+	"name": "@nova/ui-main",
+	"private" : true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts" : {
+		"dev" : "vite",
+		"build": "vite build",
+		"lint": "eslint . ",
+		"preview": "vite preview"
+	},
+	"dependencies" : {
+		"@loadable/component": "^5.16.4",
+		"@nova/ui-libarary": "0.0.1",
+		"@reduxjs/toolkit": "^2.6.1",
+		"ag-grid-react": "^33.2.1",
+		"chart.js": "^4.4.8",
+		"classnames": "^2.5.1",
+		"dayjs": "^1.11.13",
+		"immer": "^10.1.1",
+		"loadsh": "^4.17.21",
+		"opus-x-react-assets": "^11.0.4",
+		"react": "^18.2.0",
+		"react-chartjs-e": "^5.3.0",
+		"react-dom": "^18.2.0",
+		"react-redux": "^9.2.0",
+		"react-router": "^7.4.0",
+		"redux": "^5.0.1"	
+	},
+	"devDependencies" : {
+		"@eslint/js": "^9.21.0",
+		"@originjs/vite-plugin-federation": "^1.4.0",
+		"@types/loadable__component": "^5.13.9",
+		"@types/lodash": "^4.17.16",
+		"@types/node": "^22.13.13",
+		"@types/react": "^18.2.0",
+		"@types/react-dom": "^18.2.0",
+		"@vitejs/plugin-react-swc": "^3.8.0",
+		"cross-env": "^7.0.3",
+		"dotenv": "^16.4.7",
+		"eslint": "^9.21.0",
+		"eslint-config-prettier": "^10.1.1",
+		"eslint-plugin-react-hooks": "^5.1.0",
+		"eslint-plugin-react-refresh": "^0.4.19",
+		"globals": "^15.15.0",
+		"prettier": "^3.5.3",
+		"sass": "^1.86.0",
+		"typescript": "~5.7.2",
+		"typescript-eslint": "^8.24.1",
+		"vite": "^6.2.0"
+	}
+}

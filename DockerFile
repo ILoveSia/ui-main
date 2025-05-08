@@ -1,0 +1,21 @@
+FROM node:18-alpine AS build-stage
+
+RUN npm config set strict-ssl false &&\
+		npm config set unsafe-perm true &&\
+		npm config set NODE_TLS_REJECT_UNAUTHORIZED 0 &&\
+		npm config set registry http://nexus.sdsdev.co.kr:8081/repository/npm/ &&\
+		npm config set cafile='/usr/share/ca-certificates/[CERIFICATION FILE : *.crt]'
+		
+RUN npm install -g pnpm
+WORKDIR /app
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install
+COPY . .
+RUN pnpm build
+
+FROM nginx:alpine AS production-state
+COPY --from=build-stage /app/dist  /user/share/nginx/html
+COPY nginx.conf  /etc/nginx/nginx/conf
+RUN chmod 511  /usr/sbin/ngix
+EXPOSE 8080
+CMD  ["nignx", "-g", "daemon off;"]
