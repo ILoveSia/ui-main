@@ -9,7 +9,7 @@ import checkRemoteApp from './src/app/common/check-remote-app';
 // https://vite.dev/config/
 export default defineConfig( async ({mode}) => {
 	const env = loadEnv(mode, process.cwd(), '');
-	const remote = await checkRemoteApp(env, ['@cm' , '@pm' , '@py']);
+	const remotes = await checkRemoteApp(env, ['@cm' , '@pm' , '@py']);
 	return {
 		plugins : [
 			react(),
@@ -19,12 +19,12 @@ export default defineConfig( async ({mode}) => {
 				exposes: {
 					'./MainLayout' : './src/shared/components/layout/MainLayoutIndex.tsx',
 				},
-				remote,
-				shared: ['react', 'react-dom, ' react-router'],
+				remotes,
+				shared: ['react', 'react-dom', 'react-router'],
 			}),
 		],
-		bulid: {
-			target: 'ENSext',
+		build: {
+			target: 'esnext',
 		},
 		resolve: {
 			alias: {
@@ -33,17 +33,17 @@ export default defineConfig( async ({mode}) => {
 		},
 		server: {
 			port: 5173,
-			hoset: 'localhost',
-			poroxy : {
-				'/api/v1' : {
-					target: 'https://hn.algolia.com';
+			host: 'localhost',
+			proxy: {
+				'/api/v1': {
+					target: 'https://hn.algolia.com',
 					changeOrigin: true,
 					secure: false,
 				},
-				'/metadata/rest' : 
-					target : 'https://farbrix-in.samsungsds.com/,
-					changeOrigin : true,
-					secure : false,
+				'/metadata/rest': {
+					target: 'https://farbrix-in.samsungsds.com/',
+					changeOrigin: true,
+					secure: false,
 				},
 			},		
 		},
@@ -51,5 +51,4 @@ export default defineConfig( async ({mode}) => {
 			port : 4170,
 		},
 	};
-
 });
